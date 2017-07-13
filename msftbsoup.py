@@ -16,8 +16,11 @@ for link in soup.find_all('a'):
     if re.search(r'http://ligman.me/*', url): # ligman.me is the link to download the books
         print('Downloading' + url)
         
-        req = urllib.request.urlopen(url).url
-        filename = os.path.basename(req) # get the filename
-        urllib.request.urlretrieve(url, filename) #save with filename
+        try:
+            req = urllib.request.urlopen(url).url
+            filename = os.path.basename(req) # get the filename
+            urllib.request.urlretrieve(url, filename) #save with filename
+        except:
+            pass
 
         print('Done - ' + filename)
